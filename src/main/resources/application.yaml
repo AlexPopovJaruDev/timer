@@ -1,0 +1,25 @@
+timer-app:
+  queue:
+    max-buffer-size: 100000
+  consumer:
+    batch-threshold: 20
+    max-batch-size: 100
+    empty-queue-sleep-ms: 1000
+    db-unavailable-sleep-ms: 5000
+
+
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 5000
+      validation-timeout: 5000
+
+logging:
+  level:
+    root: DEBUG
